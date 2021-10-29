@@ -52,4 +52,12 @@ public class Tests {
 
         assertEquals(Cell.cellState.DEAD, actual);
     }
+    @Test
+    public void shouldDieWithSixNeighbours() {
+        Cell testCell = new Cell(Cell.cellState.ALIVE);
+
+        Cell.cellState actual = testCell.getNextState(6);
+
+        assertEquals(Cell.cellState.DEAD, actual);
+    }
 }
