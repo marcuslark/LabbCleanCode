@@ -12,4 +12,15 @@ public class Tests {
 
         assertEquals(Cell.cellState.DEAD, actual);
     }
+
+    @Test
+    public void shouldDieWithZeroNeighbours(){
+        Cell testCell = new Cell(Cell.cellState.ALIVE);
+        
+        Cell.cellState actual = testCell.getNextState(0);
+        
+        assertEquals(Cell.cellState.DEAD, actual);
+    }
+
+
 }
