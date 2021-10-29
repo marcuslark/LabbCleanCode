@@ -36,4 +36,12 @@ public class Tests {
 
         assertEquals(Cell.cellState.ALIVE, actual);
     }
+    @Test
+    public void shouldDieWithFourNeighbours() {
+        Cell testCell = new Cell(Cell.cellState.ALIVE);
+
+        Cell.cellState actual = testCell.getNextState(4);
+
+        assertEquals(Cell.cellState.DEAD, actual);
+    }
 }
