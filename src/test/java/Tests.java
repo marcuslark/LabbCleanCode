@@ -5,6 +5,14 @@ import se.iths.labb.GameOfLife;
 import static org.fest.assertions.Assertions.assertThat;
 public class Tests {
     @Test
+    public void shouldDieWithZeroNeighbours(){
+        Cell testCell = new Cell(Cell.cellState.ALIVE);
+
+        Cell.cellState actual = testCell.getNextState(0);
+
+        assertEquals(Cell.cellState.DEAD, actual);
+    }
+    @Test
     public void shouldDieWIthOnlyOneNeighbour() {
         Cell uut = new Cell(Cell.cellState.ALIVE);
 
@@ -12,21 +20,19 @@ public class Tests {
 
         assertEquals(Cell.cellState.DEAD, actual);
     }
-
-    @Test
-    public void shouldDieWithZeroNeighbours(){
-        Cell testCell = new Cell(Cell.cellState.ALIVE);
-        
-        Cell.cellState actual = testCell.getNextState(0);
-        
-        assertEquals(Cell.cellState.DEAD, actual);
-    }
-
     @Test
     public void shouldStayAliveWithTwoNeighbours() {
         Cell testCell = new Cell(Cell.cellState.ALIVE);
 
         Cell.cellState actual = testCell.getNextState(2);
+
+        assertEquals(Cell.cellState.ALIVE, actual);
+    }
+    @Test
+    public void shouldStayAliveWithThreeNeighbours() {
+        Cell testCell = new Cell(Cell.cellState.ALIVE);
+
+        Cell.cellState actual = testCell.getNextState(3);
 
         assertEquals(Cell.cellState.ALIVE, actual);
     }
