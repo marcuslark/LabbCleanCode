@@ -13,6 +13,6 @@ public class Cell {
     }
 
     public cellState getNextState(int i) {
-        return cellState.DEAD;
+        return i > 1 ? cellState.ALIVE : cellState.DEAD;
     }
 }

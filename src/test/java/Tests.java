@@ -22,5 +22,12 @@ public class Tests {
         assertEquals(Cell.cellState.DEAD, actual);
     }
 
+    @Test
+    public void shouldStayAliveWithTwoNeighbours() {
+        Cell testCell = new Cell(Cell.cellState.ALIVE);
 
+        Cell.cellState actual = testCell.getNextState(2);
+
+        assertEquals(Cell.cellState.ALIVE, actual);
+    }
 }
