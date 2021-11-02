@@ -43,11 +43,8 @@ public class Universe {
             int rowAbove = row - 1;
             numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, col, rowAbove);
         }
-        numberOfAliveNeighbours += getAliveNeighbourCountOfLeftCell(state, col - 1, row);
-        if (col < state[row].length - 1) {
-            if (state[row][col + 1] == Cell.cellState.ALIVE)
-                numberOfAliveNeighbours++;
-        }
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col - 1);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col +1);
         if (row < state.length - 1) {
             int rowBelow = row + 1;
                 numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, col, rowBelow);
@@ -57,27 +54,18 @@ public class Universe {
 
     private int getNumberOfAliveNeighboursInRow(Cell.cellState[][] state, int col, int row) {
         int numberOfAliveNeighbours = 0;
-        numberOfAliveNeighbours += getAliveNeighbourCountOfLeftCell(state, col - 1, row);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col - 1);
         if (state[row][col] == Cell.cellState.ALIVE)
             numberOfAliveNeighbours++;
-        numberOfAliveNeighbours += getCountIfCellIsAlive(state, col + 1, row);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col + 1);
         return numberOfAliveNeighbours;
     }
 
-    private int getCountIfCellIsAlive(Cell.cellState[][] state, int col, int row) {
-        if (col < state[row].length) {
+    private int getCountIfCellIsAlive(Cell.cellState[][] state, int row, int col) {
+        if (col >= 0 && col < state[row].length) {
             if (state[row][col] == Cell.cellState.ALIVE)
                 return 1;
         }
         return 0;
     }
-
-    private int getAliveNeighbourCountOfLeftCell(Cell.cellState[][] state, int col, int row) {
-        if (col >= 0) {
-            if (state[row][col] == Cell.cellState.ALIVE)
-                return 1;
-        }
-        return 0;
-    }
-
 }
