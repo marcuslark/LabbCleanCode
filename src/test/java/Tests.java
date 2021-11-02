@@ -4,8 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import se.iths.labb.Cell;
 import static org.junit.Assert.*;
-import se.iths.labb.GameOfLife;
-import javax.swing.*;
+
 import static org.fest.assertions.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
