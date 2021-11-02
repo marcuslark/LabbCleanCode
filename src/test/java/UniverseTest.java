@@ -17,21 +17,39 @@ public class UniverseTest {
                 {O, O, O},
                 {O, X, X},
         };
-        Universe universe = new Universe(original);
+        Universe testUniverse = new Universe(original);
 
-        Cell.cellState[][] actual = universe.getState();
+        Cell.cellState[][] actual = testUniverse.getState();
         assertArrayEquals(original, actual);
 
     }
 
     @Test
     public void shouldUpdateCell(){
-        Universe universe = new Universe(new cellState[][]{{X}});
+        Universe testUniverse = new Universe(new cellState[][]{{X}});
 
-        universe.update();
-        cellState[][] actual = universe.getState();
+        testUniverse.update();
+        cellState[][] actual = testUniverse.getState();
 
         assertEquals(cellState.DEAD, actual[0][0]);
+    }
+
+    @Test
+    public void shouldUpdateAllCells() {
+        Universe testUniverse = new Universe(new Cell.cellState[][] {
+                {O, X, X },
+                {X, O, X },
+                {O, O, X }
+        });
+        Cell.cellState[][] expected = new Cell.cellState[][] {
+                { O, X, X },
+                { O, O, X },
+                { O, X, O }
+        };
+
+        testUniverse.update();
+        Cell.cellState[][] actual = testUniverse.getState();
+        assertArrayEquals(expected, actual);
     }
 
 }

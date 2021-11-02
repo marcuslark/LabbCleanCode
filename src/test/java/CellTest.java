@@ -5,8 +5,6 @@ import org.junit.runner.RunWith;
 import se.iths.labb.Cell;
 import static org.junit.Assert.*;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 @RunWith(JUnitParamsRunner.class)
 public class CellTest {
     @Test
