@@ -1,16 +1,23 @@
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import se.iths.labb.Cell;
 import static org.junit.Assert.*;
 import se.iths.labb.GameOfLife;
+import javax.swing.*;
 import static org.fest.assertions.Assertions.assertThat;
+
+@RunWith(JUnitParamsRunner.class)
 public class Tests {
     @Test
-    public void shouldDieWithZeroNeighbours(){
-        Cell testCell = new Cell(Cell.cellState.ALIVE);
+    @Parameters({"ALIVE, 0, DEAD"})
+    public void shouldDieWithZeroNeighbours(String initialState, int numberOfNeighbours, String expectedState){
+        Cell testCell = new Cell(Cell.cellState.valueOf(initialState));
 
-        Cell.cellState actual = testCell.getNextState(0);
+        Cell.cellState actual = testCell.getNextState(numberOfNeighbours);
 
-        assertEquals(Cell.cellState.DEAD, actual);
+        assertEquals(Cell.cellState.valueOf(expectedState), actual);
     }
     @Test
     public void shouldDieWIthOnlyOneNeighbour() {
@@ -75,5 +82,13 @@ public class Tests {
         Cell.cellState actual = testCell.getNextState(8);
 
         assertEquals(Cell.cellState.DEAD, actual);
+    }
+    @Test
+    public void shouldBecomeAliveWithThreeNeighbours(){
+        Cell testCell = new Cell(Cell.cellState.DEAD);
+
+        Cell.cellState actual = testCell.getNextState(3);
+
+        assertEquals(Cell.cellState.ALIVE, actual);
     }
 }
