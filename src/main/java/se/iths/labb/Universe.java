@@ -43,10 +43,7 @@ public class Universe {
             int rowAbove = row - 1;
             numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, col, rowAbove);
         }
-        if (col>0) {
-            if(state[row][col - 1] == Cell.cellState.ALIVE)
-                numberOfAliveNeighbours++;
-        }
+        numberOfAliveNeighbours += getAliveNeighbourCountOfLeftCell(state, col - 1, row);
         if (col < state[row].length - 1) {
             if (state[row][col + 1] == Cell.cellState.ALIVE)
                 numberOfAliveNeighbours++;
@@ -60,23 +57,27 @@ public class Universe {
 
     private int getNumberOfAliveNeighboursInRow(Cell.cellState[][] state, int col, int row) {
         int numberOfAliveNeighbours = 0;
-        numberOfAliveNeighbours += getAliveNeighbourCountOfLeftCell(state, col, row);
+        numberOfAliveNeighbours += getAliveNeighbourCountOfLeftCell(state, col - 1, row);
         if (state[row][col] == Cell.cellState.ALIVE)
             numberOfAliveNeighbours++;
-        if (col < state[row].length - 1) {
-            if (state[row][col + 1] == Cell.cellState.ALIVE)
-                numberOfAliveNeighbours++;
-        }
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, col, row);
         return numberOfAliveNeighbours;
     }
 
-    private int getAliveNeighbourCountOfLeftCell(Cell.cellState[][] state, int col, int row) {
-        int numberOfAliveNeighbours = 0;
-        if (col > 0) {
-            if (state[row][col - 1] == Cell.cellState.ALIVE)
-                numberOfAliveNeighbours++;
+    private int getCountIfCellIsAlive(Cell.cellState[][] state, int col, int row) {
+        if (col < state[row].length - 1) {
+            if (state[row][col + 1] == Cell.cellState.ALIVE)
+                return 1;
         }
-        return numberOfAliveNeighbours;
+        return 0;
+    }
+
+    private int getAliveNeighbourCountOfLeftCell(Cell.cellState[][] state, int col, int row) {
+        if (col >= 0) {
+            if (state[row][col] == Cell.cellState.ALIVE)
+                return 1;
+        }
+        return 0;
     }
 
 }
