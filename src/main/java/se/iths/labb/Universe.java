@@ -60,13 +60,13 @@ public class Universe {
         numberOfAliveNeighbours += getAliveNeighbourCountOfLeftCell(state, col - 1, row);
         if (state[row][col] == Cell.cellState.ALIVE)
             numberOfAliveNeighbours++;
-        numberOfAliveNeighbours += getCountIfCellIsAlive(state, col, row);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, col + 1, row);
         return numberOfAliveNeighbours;
     }
 
     private int getCountIfCellIsAlive(Cell.cellState[][] state, int col, int row) {
-        if (col < state[row].length - 1) {
-            if (state[row][col + 1] == Cell.cellState.ALIVE)
+        if (col < state[row].length) {
+            if (state[row][col] == Cell.cellState.ALIVE)
                 return 1;
         }
         return 0;
