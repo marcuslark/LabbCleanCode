@@ -2,7 +2,7 @@ package se.iths.labb;
 
 public class Universe {
 
-    private Cell[][] state;
+    private final Cell[][] state;
 
     public Universe(Cell.cellState[][] cellStates) {
         state = new Cell[cellStates.length][];
@@ -55,8 +55,7 @@ public class Universe {
     private int getNumberOfAliveNeighboursInRow(Cell.cellState[][] state, int col, int row) {
         int numberOfAliveNeighbours = 0;
         numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col - 1);
-        if (state[row][col] == Cell.cellState.ALIVE)
-            numberOfAliveNeighbours++;
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col);
         numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col + 1);
         return numberOfAliveNeighbours;
     }
