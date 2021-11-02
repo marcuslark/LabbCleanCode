@@ -8,6 +8,10 @@ public class Cell {
         this.state = state;
     }
 
+    public Cell.cellState getState() {
+        return state;
+    }
+
     public enum cellState {
         ALIVE, DEAD
     }

@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import static org.fest.assertions.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-public class Tests {
+public class CellTest {
     @Test
     @Parameters({
             "ALIVE, 0, DEAD",
@@ -39,4 +39,5 @@ public class Tests {
         Cell.cellState expectedState = Cell.cellState.valueOf(expected);
         assertEquals(expectedState, actual);
     }
+
 }
