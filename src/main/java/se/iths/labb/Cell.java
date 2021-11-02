@@ -16,11 +16,11 @@ public class Cell {
         ALIVE, DEAD
     }
 
-    public cellState getNextState(int i) {
+    public void update(int i) {
         if (state == cellState.ALIVE) {
-            return i > 1 && i < 4 ? cellState.ALIVE : cellState.DEAD;
+            state = i > 1 && i < 4 ? cellState.ALIVE : cellState.DEAD;
         } else {
-            return i == 3 ? cellState.ALIVE : cellState.DEAD;
+            state = i == 3 ? cellState.ALIVE : cellState.DEAD;
         }
     }
 }
