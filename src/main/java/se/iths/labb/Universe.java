@@ -43,9 +43,8 @@ public class Universe {
             int rowAbove = row - 1;
             numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, col, rowAbove);
         }
-
-        if (col > 0) {
-            if (state[row][col - 1] == Cell.cellState.ALIVE)
+        if (col>0) {
+            if(state[row][col - 1] == Cell.cellState.ALIVE)
                 numberOfAliveNeighbours++;
         }
         if (col < state[row].length - 1) {
@@ -61,14 +60,20 @@ public class Universe {
 
     private int getNumberOfAliveNeighboursInRow(Cell.cellState[][] state, int col, int row) {
         int numberOfAliveNeighbours = 0;
-        if (col > 0) {
-            if (state[row][col - 1] == Cell.cellState.ALIVE)
-                numberOfAliveNeighbours++;
-        }
+        numberOfAliveNeighbours += getAliveNeighbourCountOfLeftCell(state, col, row);
         if (state[row][col] == Cell.cellState.ALIVE)
             numberOfAliveNeighbours++;
         if (col < state[row].length - 1) {
             if (state[row][col + 1] == Cell.cellState.ALIVE)
+                numberOfAliveNeighbours++;
+        }
+        return numberOfAliveNeighbours;
+    }
+
+    private int getAliveNeighbourCountOfLeftCell(Cell.cellState[][] state, int col, int row) {
+        int numberOfAliveNeighbours = 0;
+        if (col > 0) {
+            if (state[row][col - 1] == Cell.cellState.ALIVE)
                 numberOfAliveNeighbours++;
         }
         return numberOfAliveNeighbours;
