@@ -12,6 +12,10 @@ public class Cell {
         return state;
     }
 
+    boolean isAlive() {
+        return getState() == cellState.ALIVE;
+    }
+
     public enum cellState {
         ALIVE, DEAD
     }

@@ -71,6 +71,7 @@ public class Universe {
     }
 
     private int getCountIfCellIsAlive(int row, int col) {
-        return getCell(row, col).getState() == Cell.cellState.ALIVE ? 1 : 0;
+        return getCell(row, col).isAlive() ? 1 : 0;
     }
+
 }
