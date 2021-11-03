@@ -4,24 +4,24 @@ public class Universe {
 
     private final Cell[][] state;
 
-    public Universe(Cell.cellState[][] cellStates) {
+    public Universe(Cell[][] cellStates) {
         state = new Cell[cellStates.length][];
 
         for (int row = 0; row < cellStates.length; row++) {
             state[row] = new Cell[cellStates[row].length];
             for (int col = 0; col < cellStates[row].length; col++) {
-                state[row][col] = new Cell(cellStates[row][col]);
+                state[row][col] = new Cell(cellStates[row][col].getState());
             }
         }
     }
 
-    public Cell.cellState[][] getState() {
-        Cell.cellState[][] cellStates = new Cell.cellState[state.length][];
+    public Cell[][] getState() {
+        Cell[][] cellStates = new Cell[state.length][];
 
         for (int row = 0; row < state.length; row++) {
-            cellStates[row] = new Cell.cellState[state[row].length];
+            cellStates[row] = new Cell[state[row].length];
             for (int col = 0; col < state[row].length; col++) {
-                cellStates[row][col] = state[row][col].getState();
+                cellStates[row][col] = state[row][col];
             }
         }
         return cellStates;
