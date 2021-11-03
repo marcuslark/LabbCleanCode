@@ -28,6 +28,10 @@ public class Universe {
     }
 
     public void update() {
+        updateState(getNeighbourCount());
+    }
+
+    private int[][] getNeighbourCount() {
         int[][] numbersOfAliveNeighbours = new int[state.length][];
         for (int row = 0; row < state.length; row++) {
             numbersOfAliveNeighbours[row] = new int[state[row].length];
@@ -35,7 +39,10 @@ public class Universe {
                 numbersOfAliveNeighbours[row][col] = getNumberOfAliveNeighbours(row, col);
             }
         }
+        return numbersOfAliveNeighbours;
+    }
 
+    private void updateState(int[][] numbersOfAliveNeighbours) {
         for (int row = 0; row < state.length; row++) {
             for (int col = 0; col < state[row].length; col++) {
                 state[row][col].update(numbersOfAliveNeighbours[row][col]);
