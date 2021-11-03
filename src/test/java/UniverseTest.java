@@ -26,7 +26,9 @@ public class UniverseTest {
 
     @Test
     public void shouldUpdateCell(){
-        Universe testUniverse = new Universe(new cellState[][]{{X}});
+        Universe testUniverse = new Universe(new cellState[][]{
+                { X }
+        });
 
         cellState[][] actual = getNextState(testUniverse);
 
@@ -36,14 +38,16 @@ public class UniverseTest {
     @Test
     public void shouldUpdateAllCells() {
         Universe testUniverse = new Universe(new Cell.cellState[][] {
-                {O, X, X },
-                {X, O, X },
-                {O, O, X }
+                { O, O, O, O, O, O, O, O },
+                { O, O, O, O, X, O, O, O },
+                { O, O, O, X, X, O, O, O },
+                { O, O, O, O, O, O, O, O }
         });
         Cell.cellState[][] expected = new Cell.cellState[][] {
-                { O, X, X },
-                { O, O, X },
-                { O, X, O }
+                { O, O, O, O, O, O, O, O },
+                { O, O, O, X, X, O, O, O },
+                { O, O, O, X, X, O, O, O },
+                { O, O, O, O, O, O, O, O }
         };
 
         cellState[][] actual = getNextState(testUniverse);
@@ -51,7 +55,7 @@ public class UniverseTest {
     }
 
     @Test
-    public void shouldConsiderAllNeighbours(){
+    public void ShouldHaveMaximumNeighbours(){
         Universe testUniverse = new Universe(new Cell.cellState[][] {
                 {X, X, X },
                 {X, X, X },
